@@ -29,7 +29,14 @@
     </div><!-- /.container-fluid -->
   </nav>
 
-<%= yield %>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+
+  <% if user_signed_in? %>
+    <%= link_to "Salir", destroy_user_session_path, method: :delete, data: { confirm: "¿Estás seguro que deseas finalizar la sesión?" } %>
+  <% end %>
+
+  <%= yield %>
 
 </body>
 </html>
