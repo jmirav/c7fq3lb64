@@ -4,10 +4,10 @@ class ExpensesController < ApplicationController
   def index
      @expenses = Expense.order("date DESC")
      if params[:concept].present?
-       @expenses = @expenses.where("concept LIKE ?", "%#{params[:concept]}%")
+       @expenses = @expenses.where("concept LIKE ?", "%#{params[:concept]}%").where(user_id: current_user)
      end
      if params[:category_id].present?
-       @expenses = @expenses.where("category_id = ?", params[:category_id])
+       @expenses = @expenses.where("category_id = ?", params[:category_id]).where(user_id: current_user)
      end
    end
 end
